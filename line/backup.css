@@ -55,11 +55,9 @@ header {
 }
 .main-menu {
     position: relative;
-    padding-right: 50px;
+    padding: 45px 10px 45px 0;
     display: inline-block;
     color: black;
-    left: 250px;
-    bottom: 30px;
 }
 .main-menu:hover .sub-menu {
     display: block;
@@ -68,17 +66,20 @@ header {
     display: none;
     position: absolute;
     float: left;
-    padding-right: 20px;
+    margin: 30px 20px 0 0;
     border: 1px solid deeppink;
-    top: 50px;
 }
 /* .sub-sub-menu {
     position: absolute;
 } */
-/* .container {
+.container {
     width: 100%;
     height: 100%;
-} */
+}
+.bg-video {
+    min-width: 100%;
+    min-height: 100%;
+}
 article {
     width: 100%;
     margin: 72px 152px;
@@ -89,23 +90,15 @@ article {
 }
 .both-article {
     border: 1px solid deeppink;
-    display: inline-block;
-    line-height: 3.5rem;
 }
 .left-article {
     border: 1px solid deeppink;
     display: inline-block;
-    padding: 20px;
 }
 .right-article {
     border: 1px solid deeppink;
     display: inline-block;
-    padding: 20px;
 }
 .more-article {
 
-}
-.bottom-article {
-    border: 1px solid deeppink;
-    display: inline-block;
 }
