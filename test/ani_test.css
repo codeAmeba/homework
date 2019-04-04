@@ -1,0 +1,96 @@
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+@keyframes movingBox {
+    0%{
+        left: 50%;
+        top: 0;
+    }
+    100% {
+        left: 50%;
+        top: 100%;
+    }
+}
+@keyframes movingBox2 {
+    0%{
+        left: 0;
+        top: 50%;
+    }
+    100% {
+        left: 100%;
+        top: 50%;
+    }
+}
+@keyframes movingBox3 {
+    0% {
+        transform: scale3d(0,0,0);
+        /* width: 5px;
+        height: 5px; */
+    }
+    100% {
+        /* width: 100%;
+        height: 100%; */
+        transform: scale3d(0,0,100%);
+    }
+}
+body {
+    background-color: black;
+}
+div {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    display: block; 
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+/* .boxOne {
+    top: 0;
+    left: 50%;
+} */
+/* .boxOne {
+    animation-name: movingBox;
+    animation-duration: 2000ms;
+    background-color: deeppink;
+    animation-timing-function: cubic-bezier(1, -0.14, 0, 1.13);
+}
+.boxTwo {
+    animation-name: movingBox2;
+    animation-duration: 1000ms;
+    background-color: aqua;
+    animation-timing-function: cubic-bezier(1, -0.14, 0, 1.13);
+} */
+.boxThree {
+    width: 800px;
+    height: 800px;
+    animation-name: movingBox3;
+    animation-duration: 3000ms;
+    background-color: rgb(26, 205, 218);
+    animation-timing-function: cubic-bezier(1, -0.14, 0, 1.13);
+}
+
+/* .boxTwo {
+    left: 50px;
+    animation-duration: 2500ms;
+    animation-delay: 500ms;
+    background-color: aquamarine;
+}
+.boxThree {
+    left: 100px;
+    animation-duration: 3500ms;
+    animation-delay: 1000ms;
+    background-color: rgb(47, 240, 95);
+}
+.boxFour {
+    left: 150px;
+    animation-duration: 2000ms;
+    background-color: rgb(255, 232, 22);
+}
+.boxFive {
+    left: 200px;
+    animation-duration: 3000ms;
+    animation-delay: 200ms;
+    background-color: rgb(6, 114, 255);
+} */

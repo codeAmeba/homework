@@ -31,6 +31,9 @@ body {
 a:visited {
     color: black;
 }
+a:link {
+    color: black;
+}
 ul {
     padding: 0;
 }
@@ -55,11 +58,10 @@ header {
 }
 .main-menu {
     position: relative;
-    padding-right: 50px;
-    display: inline-block;
-    color: black;
+    float: left;
     left: 250px;
     bottom: 30px;
+    padding-right: 70px;
 }
 .main-menu:hover .sub-menu {
     display: block;
