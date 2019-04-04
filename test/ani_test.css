@@ -50,7 +50,7 @@ div {
     top: 0;
     left: 50%;
 } */
-/* .boxOne {
+.boxOne {
     animation-name: movingBox;
     animation-duration: 2000ms;
     background-color: deeppink;
@@ -61,13 +61,13 @@ div {
     animation-duration: 1000ms;
     background-color: aqua;
     animation-timing-function: cubic-bezier(1, -0.14, 0, 1.13);
-} */
+}
 .boxThree {
-    width: 800px;
-    height: 800px;
+    width: 400px;
+    height: 400px;
     animation-name: movingBox3;
     animation-duration: 3000ms;
-    background-color: rgb(26, 205, 218);
+    background-color: rgb(149, 248, 36);
     animation-timing-function: cubic-bezier(1, -0.14, 0, 1.13);
 }
 
