@@ -7,14 +7,16 @@
 </head>
 <body>
     <header>
-        <div class="logo-box">
+        <div class="logo-box"> 
+            <!-- div 최대한 줄이기 -->
             <h1>
                 <a href="#">
-                    <img class="line-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/LINE_Corporation_Logo.png" alt="line plus">
+                    <img class="line-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/LINE_Corporation_Logo.png" alt="line">
                 </a>
             </h1>
         </div>
         <nav>
+            <h2>main menu</h2>
             <div>
                 <ul class="main-menu">
                     <li><a href="#">회사소개</a>
@@ -51,34 +53,37 @@
                             <li><a href="#">채용공고</a></li>
                         </ul>
                     </li>
+                    <li class="sitemap">
+                        <a href="#">SITEMAP</a>
+                    </li>
                 </ul>
             </div>
-            <div class="sitemap">
-                <a href="#">SITEMAP</a>
-            </div>
-            <div>
-                <select name="lang" class="lang-selector">
-                    <option value="한국어">한국어</option>
-                    <option value="日本語">日本語</option>
-                    <option value="English">English</option>
-                    <option value="中文(繁體)">中文(繁體)</option>
-                    <option value="中文(简体)">中文(简体)</option>
-                    <option value="ภาษาไทย">ภาษาไทย</option>
-                </select>
-            </div>
         </nav>
+        <div class="lang-selector">
+            <button class="btn-lang-selecor"></button>
+            <ul>
+                <li><a href="#">한국어</a></li>
+                <li><a href="#">日本語</a></li>
+                <li><a href="#">English</a></li>
+                <li><a href="#">中文(繁體)</a></li>
+                <li><a href="#">中文(简体)</a></li>
+                <li><a href="#">ภาษาไทย</a></li>
+            </ul>
+        </div>
     </header>
 
     <section class="container">
         <section>
-            <h3>CLOSING THE DISTANCE</h3>
-                <!-- <iframe class="bg-video" src="https://www.youtube.com/embed/JPpiKm8dKR8?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                <!-- <video autoplay muted loop class="bg-video">
+                <h2 class="video-text">
+                        <a href="#">LINE's Mission</a>
+                    </h2>
+            <p>CLOSING THE DISTANCE</p>
+            
+                <iframe class="bg-video" src="https://www.youtube.com/embed/JPpiKm8dKR8?controls=0" frameborder="0" allow="accelerometer; autoplay; muted; loop;" width="100%" allowfullscreen></iframe>
+                <!-- <video autoplay muted loop class="bg-video" title="line's mission">
                     <source src="https://www.youtube.com/embed/JPpiKm8dKR8?controls=0" type="video/mp4">
                 </video> -->
-            <div class="video-text">
-                <a href="#">LINE's Mission</a>
-            </div>
+
         </section>
         <article>
             <div>
@@ -87,6 +92,7 @@
                 </div>
                 <div class="both-article">
                     <div class="left-article">
+                        <!-- 리스트 형식으로 바꾸기 -->
                         <a href="#">
                             <h3>라인, 웰컴 키트 디자인 프로젝트로 iF 디자인 어워드 2019 수상</h3>
                             <time>2019.02.19</time><p>ALL</p>
@@ -129,6 +135,7 @@
             </div>
         </article>
         <div class="bottom-article">
+            <!-- dt dd 사용하기 -->
                 <div>
                     <a href="#">
                         <h3>비즈니스 제휴 문의</h3>
@@ -167,13 +174,15 @@
     <footer>
         <div class="etc-info">
             <div class="copyrights">
-                <p>©LINE Corporation</p>
+                <small>&copy;LINE Corporation</small>
+                <!-- 리스트로 바꾸기 -->
                 <a href="#">개인정보처리방침</a>
                 <a href="#">LINE 파트너</a>
                 <a href="#">Contact</a>
             </div>
             <div>
                 <select name="family-sites" class="family-sites">
+                    <!-- 버튼 + 리스트로 바꾸기 -->
                     <option value="LINE">LINE</option>
                     <option value="LINE STORE">LINE STORE</option>
                     <option value="#"></option>
