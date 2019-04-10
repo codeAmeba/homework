@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>LINE PLUS</title>
-    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+    <link rel="stylesheet" type="text/css" href="main2.css">
 </head>
 <body>
     <header>
-        <div class="logo-box"> 
-            <!-- div 최대한 줄이기 -->
+        <!-- 불필요한 div 제거하기 -->
             <h1>
                 <a href="#">
                     <img class="line-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/LINE_Corporation_Logo.png" alt="line">
                 </a>
             </h1>
-        </div>
         <nav>
-            <h2>main menu</h2>
-            <div>
+            <h2 class="readable-hidden">main menu</h2>
+            <div class="menu-box">
                 <ul class="main-menu">
-                    <li><a href="#">회사소개</a>
-                        <ul class="sub-menu">
+                    <li class="main-menu-item"><a href="#">회사소개</a></li>
+                        <ul class="sub-menu sub-menu1 menu-act">
                             <li><a href="#">회사소개</a></li>
                             <li><a class="mission" href="#">LINE's Mission</a>
                                 <ul class="sub-sub-menu">
@@ -34,21 +32,21 @@
                             <li><a href="#">LINE 로고 사용 가이드</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">사업</a>
-                        <ul class="sub-menu">
+                    <li class="main-menu-item"><a href="#">사업</a></li>
+                        <ul class="sub-menu sub-menu2">
                             <li><a href="#">서비스</a></li>
                             <li><a href="#">캐릭터 사업</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">홍보</a>
-                        <ul class="sub-menu">
+                    <li class="main-menu-item"><a href="#">홍보</a></li>
+                        <ul class="sub-menu sub-menu3">
                             <li><a href="#">Global News</a></li>
                             <li><a href="#">기사 및 보도자료</a></li>
                             <li><a href="#">Blog & SNS</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">채용</a>
-                        <ul class="sub-menu">
+                    <li class="main-menu-item"><a href="#">채용</a></li>
+                        <ul class="sub-menu sub-menu4">
                             <li><a href="#">일과 사람</a></li>
                             <li><a href="#">채용공고</a></li>
                         </ul>
@@ -60,23 +58,25 @@
             </div>
         </nav>
         <div class="lang-selector">
-            <button class="btn-lang-selecor"></button>
+            <div class="btn-lang-selecor">
+                <button></button>
+            </div>
             <ul>
-                <li><a href="#">한국어</a></li>
-                <li><a href="#">日本語</a></li>
-                <li><a href="#">English</a></li>
-                <li><a href="#">中文(繁體)</a></li>
-                <li><a href="#">中文(简体)</a></li>
-                <li><a href="#">ภาษาไทย</a></li>
+                <li><a href="#" class="lang-ko">한국어</a></li>
+                <li><a href="#" class="lang-jp">日本語</a></li>
+                <li><a href="#" class="lang-en">English</a></li>
+                <li><a href="#" class="lang-ch1">中文(繁體)</a></li>
+                <li><a href="#" class="lang-ch2">中文(简体)</a></li>
+                <li><a href="#" class="lang-th">ภาษาไทย</a></li>
             </ul>
         </div>
     </header>
 
     <section class="container">
         <section>
-                <h2 class="video-text">
-                        <a href="#">LINE's Mission</a>
-                    </h2>
+            <h2 class="video-text">
+                <a href="#">LINE's Mission</a>
+            </h2>
             <p>CLOSING THE DISTANCE</p>
             
                 <iframe class="bg-video" src="https://www.youtube.com/embed/JPpiKm8dKR8?controls=0" frameborder="0" allow="accelerometer; autoplay; muted; loop;" width="100%" allowfullscreen></iframe>
@@ -86,125 +86,124 @@
 
         </section>
         <article>
-            <div>
-                <div class="newsroom">
-                    <h2>NEWS ROOM</h2>
-                </div>
-                <div class="both-article">
-                    <div class="left-article">
-                        <!-- 리스트 형식으로 바꾸기 -->
-                        <a href="#">
-                            <h3>라인, 웰컴 키트 디자인 프로젝트로 iF 디자인 어워드 2019 수상</h3>
+            <h2 class="newsroom">NEWS ROOM</h2>
+
+            <div class="both-article">
+                <ul class="left-article">
+                    <!-- 리스트 형식으로 바꾸기 -->
+                    <li>
+                        <a href="#">라인, 웰컴 키트 디자인 프로젝트로 iF 디자인 어워드 2019 수상
                             <time>2019.02.19</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인, 보안 역량 강화 위해 세계적 화이트해커로 구성된 ‘그레이해쉬’ 인수</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인, 보안 역량 강화 위해 세계적 화이트해커로 구성된 ‘그레이해쉬’ 인수
                             <time>2018.12.11</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인, 글로벌 암호화폐 거래소 비트박스에 아이콘(ICX) 상장</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인, 글로벌 암호화폐 거래소 비트박스에 아이콘(ICX) 상장
                             <time>2018.11.27</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인, 글로벌 암호화폐 거래소 비트박스 모바일 앱 출시</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인, 글로벌 암호화폐 거래소 비트박스 모바일 앱 출시
                             <time>2018.11.06</time><p>ALL</p>
                         </a>
-                    </div>
-                    <div class="right-article">
-                        <a href="#">
-                            <h3>라인-한국정보과학회 블록체인 경진대회에서 링크체인 기반 에너지 거</h3>
+                    </li>
+                </ul>
+                <ul class="right-article">
+                    <li>
+                        <a href="#">라인-한국정보과학회 블록체인 경진대회에서 링크체인 기반 에너지 거
                             <time>2018.12.26</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인, 유저 의견 반영한 쉽고 편리한 핀테크 서비스 제공 위해 설문조사</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인, 유저 의견 반영한 쉽고 편리한 핀테크 서비스 제공 위해 설문조사
                             <time>2018.12.05</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인, 글로벌 개발 기술 컨퍼런스 ‘LINE DEV DAY 2018’ 개최</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인, 글로벌 개발 기술 컨퍼런스 ‘LINE DEV DAY 2018’ 개최
                             <time>2018.11.23</time><p>ALL</p>
                         </a>
-                        <a href="#">
-                            <h3>라인파이낸셜, KEB하나은행 인도네시아 신주인수계약 통해 인니 핀테크</h3>
+                    </li>
+                    <li>
+                        <a href="#">라인파이낸셜, KEB하나은행 인도네시아 신주인수계약 통해 인니 핀테크
                             <time>2018.10.28</time><p>ALL</p>
                         </a>
-                    </div>
-                </div>
-                <div class="more-article">
-                    <a href="#">more</a>
-                </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="more-article">
+                <a href="#">more</a>
             </div>
         </article>
-        <div class="bottom-article">
+        <dl class="bottom-article">
             <!-- dt dd 사용하기 -->
-                <div>
-                    <a href="#">
-                        <h3>비즈니스 제휴 문의</h3>
-                        LINE은 사용자들의 커뮤니케이션을 
-                        더욱 즐겁게 만들어줄 파트너 기업을 
-                        모집합니다.
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <h3>기술정보</h3>
-                        LINE의 개발자들은 다양한 서비스를 
-                        개발하며, 기술적 도전을 매일 
-                        경험하고있습니다.
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <h3>채용공고</h3>
-                        전 세계 인재들과 함께 
-                        내 커리어를 level up 하고 싶다면 
-                        지금 LINE에 조인하세요!
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <h3>캐릭터 사업</h3>
-                        메신저 속 LINE FRIENDS의 
-                        다양한 제품들은 물론, 특별한 경험도 
-                        선사합니다.
-                    </a>
-                </div>
-            </div>
+                <a href="#" target="_blank">
+                    <dt>비즈니스 제휴 문의</dt>
+                    <dd>LINE은 사용자들의 커뮤니케이션을 
+                    더욱 즐겁게 만들어줄 파트너 기업을 
+                    모집합니다.</dd>
+                </a>
+                <a href="#" target="_blank">
+                    <dt>기술정보</dt>
+                    <dd>LINE의 개발자들은 다양한 서비스를 
+                    개발하며, 기술적 도전을 매일 
+                    경험하고있습니다.</dd>
+                </a>
+                <a href="#" target="_blank">
+                    <dt>채용공고</dt>
+                    <dd>전 세계 인재들과 함께 
+                    내 커리어를 level up 하고 싶다면 
+                    지금 LINE에 조인하세요!</dd>
+                </a>
+                <a href="#" target="_blank">
+                    <dt>캐릭터 사업</dt>
+                    <dd>메신저 속 LINE FRIENDS의 
+                    다양한 제품들은 물론, 특별한 경험도 
+                    선사합니다.</dd>
+                </a>
+            </dl>
     </section>
 
     <footer>
-        <div class="etc-info">
             <div class="copyrights">
                 <small>&copy;LINE Corporation</small>
                 <!-- 리스트로 바꾸기 -->
-                <a href="#">개인정보처리방침</a>
-                <a href="#">LINE 파트너</a>
-                <a href="#">Contact</a>
+                <ul>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">LINE 파트너</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
             </div>
             <div>
-                <select name="family-sites" class="family-sites">
+                <button name="family-sites" class="family-sites"></button>
                     <!-- 버튼 + 리스트로 바꾸기 -->
-                    <option value="LINE">LINE</option>
-                    <option value="LINE STORE">LINE STORE</option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                    <option value="#"></option>
-                </select>
+                <ul>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                    <li><a href="#">LINE</a></li>
+                </ul>
             </div>
         </div>
     </footer>

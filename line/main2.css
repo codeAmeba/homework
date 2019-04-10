@@ -1,0 +1,122 @@
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    vertical-align: baseline;
+}
+body {
+    margin: 0 150px;
+}
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+}
+
+section, article, footer {
+    display: none;
+}
+li {
+    list-style: none;
+}
+.readable-hidden {
+    display: none;
+}
+.line-logo {
+    width: 70px;
+    height: 25px;
+    top: 30px;
+    position: relative;
+    display: inline-block;
+}
+.main-menu {
+    position: relative;
+    bottom: 25px;
+    left: 180px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.main-menu, .sub-menu {
+    display: flex;
+    flex-direction: row;
+}
+.main-menu-item {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: 1.2rem;
+}
+.sub-menu {
+    background: greenyellow;
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    padding: 0 300px;
+    right: 30px;
+    top: 50px;
+    align-items: center;
+    display: none;
+    opacity: .90;
+}
+.sub-menu li {
+    padding: 0 30px;
+}
+.sub-menu1 {
+    height: 180px;
+}
+.sub-menu1 a {
+    position: relative;
+    left: 120px;
+}
+.sub-menu2 a{
+    position: relative;
+    left: 400px;
+}
+.sitemap {
+    position: relative;
+    display: inline-block;
+    left: 320px;
+}
+.sitemap a {
+    font-size: 1.2rem;
+    color: rgb(158, 158, 158);
+}
+.menu-act {
+    display: flex;
+}
+.lang-selector {
+    position: relative;
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 30px;
+    width: 130px;
+    height: 40px;
+    bottom: 90px;
+    left: 1020px;
+}
+.btn-lang-selector {
+    position: absolute;
+
+}
+.lang-selector ul {
+    display: none;
+}
+
+
+
+
