@@ -1,5 +1,5 @@
 # HTML/CSS 1~8일차 주요 내용
-**블로그에 정리중**
+## 블로그에 정리중
 - https://codeameba.github.io/
 
 ## 1일차(0401)
