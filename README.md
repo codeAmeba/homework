@@ -111,3 +111,42 @@
 	- style: 기본값(생략)은 십진수(decimal), list-style-type과 동일한 값
 		* disc, circle, square, decimal, decimal-leading-zero, lower-roman, upper-roman, lower-greek, lower-latin, upper-latin, armenian, georgian, lower-alpha, upper-alpha, or none.
 
+## 9일차(0415)
+- `<a href="mailto:code.ameba@gmail.com">code.ameba@gmail.com</a>`
+> 클릭 시 메일 작성 창 열림
+- `<a href=“tel:01026840242”>Tel</a>
+->  모바일 환경에서 전화걸기 링크
+
+- `<header>`와 `<footer>`는 어디에나 들어갈 수 있다.(메인, 아티클, 섹션 등등)
+- 푸터는 제목이 필요 없다
+- 푸터의 주소에는 `<address>` 태그 사용
+- `<small>`: 주변 글자보다 작게
+- `<big>`: 주변 글자보다 크게
+- `&copy;` 저작권 표시
+
+### 반응형 웹
+- 마크업이 심플해야 함
+- RWD(반응형) vs AWD(적응형)
+- Flexible web design
+- 다양한 패턴이 존재
+- desk top first vs mobile first
+- 디바이스의 성능저하 고려해야 함
+- px 단위는 지양, %, vh 등의 비율 단위 지향
+- media queries
+- @ : 앳사인
+- 프린트용 CSS 별도 제작 및 연결 가능
+- 모바일 세로 모드: 포트레이트 / 가로 모드: 랜드스케이프
+- sass(css 전처리기)  최근에는  scss를 더 많이  쓰는 편
+```
+img {
+	max-width: 100%;
+	height: auto;
+ }
+```
+
+- 모바일 환경에 맞는 아트디렉션 필요(단순히 사이즈를 줄이는 게 아닌 적절한 크롭)
+- `<img src=“#” srcset=“”>` , `<picture>`, `<source>` 디바이스에 따른 조정 가능
+- @media screen device-pixel-ratio
+- html shiv
+- break point :  반응형에서 너비가 바뀌는 지점?
+- padding 백분율은 가로 사이즈 기준
