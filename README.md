@@ -68,7 +68,9 @@
 - text-indent
 - letter-spacing
 - clearfix(모듈)
-	- ``.clearfix::after {content: “”; display: block; clear: both;}``
+```
+.clearfix::after {content: “”; display: block; clear: both;}
+```
 
 
 ## 5일차(0408)
@@ -89,7 +91,7 @@
 - removeClass
 - addClass
 - e.keycode
-	- *  [https://keycode.info/](https://keycode.info/) 
+	- [https://keycode.info/](https://keycode.info/) 
 	
 
 ## 7일차(0411)
@@ -109,13 +111,14 @@
 	- counter(name, style)
 	- name: 카운터 이름
 	- style: 기본값(생략)은 십진수(decimal), list-style-type과 동일한 값
-		* disc, circle, square, decimal, decimal-leading-zero, lower-roman, upper-roman, lower-greek, lower-latin, upper-latin, armenian, georgian, lower-alpha, upper-alpha, or none.
+	- disc, circle, square, decimal, decimal-leading-zero, lower-roman, upper-roman, lower-greek, lower-latin, upper-latin, armenian, georgian, lower-alpha, upper-alpha, or none.
+
 
 ## 9일차(0415)
 - `<a href="mailto:code.ameba@gmail.com">code.ameba@gmail.com</a>`
 > 클릭 시 메일 작성 창 열림
-- `<a href=“tel:01026840242”>Tel</a>
-->  모바일 환경에서 전화걸기 링크
+- `<a href=“tel:01026840242”>Tel</a> 
+> 모바일 환경에서 전화걸기 링크
 
 - `<header>`와 `<footer>`는 어디에나 들어갈 수 있다.(메인, 아티클, 섹션 등등)
 - 푸터는 제목이 필요 없다
@@ -150,3 +153,105 @@ img {
 - html shiv
 - break point :  반응형에서 너비가 바뀌는 지점?
 - padding 백분율은 가로 사이즈 기준
+
+
+## 10일차(0416)
+- picture, srcset 등으로 기기별 적절한 이미지 사이즈 적용 가능
+- 반응형 배경이미지
+
+
+
+# 컴퓨터 공학 기초
+## 컴공 1일차(0417)
+- Philip Roberts - What the heck~~
+- 컴퓨터는 전압으로 0, 1을 구분
+- 2진수, 10진수, 16진수? - 정수를 표현하는 방식의 차이
+> 10진수: 한 자리에 올 수 있는 숫자가 10개(0~9) radix
+> 2진수: 0과 1
+> 16진수: 0~f  - 16개 
+
+- JS의 단점:  number의 타입이 하나밖에 없음(double = 8byte)
+->  I/O 작업을 위한 언어이기 때문에
+
+- 정수 표현 범위가 있음. 표 참조
+- 
+
+## 컴공 2일차(0418)
+- **프로그래머가 하는 일은 추상화(abstraction)**
+- 함수(function, routine, procedure, subroutine)
+- procedural programming =절차지향
+- 객체(object)
+-> OOP(object - oriented - programming) 객체지향
+
+- 함수에서의 추상화란,
+-> ‘함수 시그니처(함수이름, 매개변수, 결과값)’ 또는 ‘인터페이스’와 ‘내부구현’을 구분(seperation)하는 것
+
+- Documentation은 함수 시그니처를 모아놓은 것
+- 내부구현은 알고리즘으로 이루어져있고, 이를 테스트할 때  O(n)를 이용
+
+
+### 함수를 만들 때 유의할 점
+- 함수이름은, 누가 보더라도 어떤 용도인지 알 수 있도록 명확하게
+- 매개변수, return 등 인터페이스를 동일하게 설계해야 함. 이를 기능명세라고 함.
+
+### 2진수 정규화(normalization)
+- 정규화: 정수부를 1자리수, 0이 아닌 자연수
+- 예: 123.82 -> 1.23482 x 10 **2
+- mantissa 부분은 정밀도를 의미한다.
+
+### Epsilon
+
+### 언어 추상화
+
+### 파이썬
+#### mutable object(변경 가능 객체)
+- 리스트
+- 딕셔너리
+- 집합(set)
+#### immutable object(변경 불가능 객체)
+- 정수, 상수, 정수 
+- 문자열
+- 튜플
+
+
+## 컴공 3일차(0419)
+- 자료구조 중 BST는 꼭 알아야 함
+- 파이썬은 hash로 구성됨
+- 이산수학, 집합, 선형대수 > 프로그래머의 필수 수학
+
+
+### 새로운 언어를 공부할 때 보는 순서
+1. 자료형
+2. 연산자
+3. 제어문, 반복문
+4. 함수 - call by ref? or call by value?
+5. class(OOP)
+	- 정보은닉
+	- 상속지원여부 
+	- 가상함수지원여부
+
+6. expression(식)
+	- “abc” , 1 : 단항식(unary expression)
+	- 무언가를 반환할 수 있으면 식
+	- 파이썬에서는 함수도 식
+
+7. 기본 입력 방식
+	- stdin(standard input) : keyboard
+	- stdout(standard output) : monitor
+	- stderr(standard error) : monitor
+
+
+### 함수는 첫 글자 ‘소문자’ / 클래스는 첫 글자 ‘대문자’
+
+### 파이썬2 와 파이썬3 의 차이
+- 내부구조가 다름
+- 파이썬2는 유니코드 지원 안 함
+- 파이썬3에서 문자열이 편리해짐
+
+### ASCII / UNICODE
+- 신호(부호)를 문자로 바꾸는 것이 ‘인코드’ 예) 모스부호
+- 문자를 신호로 바꾸는 것이 ‘디코드’
+- a(character)=97(code point) 
+- ASCII는 7bit까지만 지원 가능하다는 게 단점
+- 
+
