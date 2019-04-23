@@ -253,5 +253,403 @@ img {
 - 문자를 신호로 바꾸는 것이 ‘디코드’
 - a(character)=97(code point) 
 - ASCII는 7bit까지만 지원 가능하다는 게 단점
-- 
 
+
+
+# 컴공 4일차(0422)
+### 함수
+- Namespace : 변수가 출력될 때 본인과 가까운 순서로 실행되며 그 영역을 namespace라고 함. 변수가 저장된 공간.
+```
+a=10
+def f():
+    t=10
+    def g():
+        b=20
+        def h():
+            nonlocal b #다른 지역 변수 b를 선택
+            b=30
+            print(b,'in h')
+        h()
+        print(b, 'in g')
+    g()
+f()
+```
+- Stack frame: 함수가 실행될 때 쌓이는 메모리 공간(자바스크립트의 call stack)
+
+### 인자 전달 방식에 따른 함수의 구분
+- call by value  :  값을 가져와서 스택을 쌓음. 스택 밖으로 넘어갈 수는 없음.
+- call by reference  : 주소값을 가져와서(참조하여) 스택을 쌓음. 스택을 넘어서 값을 가져오거나 수정이 가능함.
+- call by object reference
+
+- immutable object는 함수 내부에서 값을 변경할 수 없다.
+
+### First - Class Function
+- 프로그래밍 언어 중 함수를 다른 변수와 동일하게 다루는 언어를 함수우선순위(First-class function)를 가졌다고 표현합니다. 예를 들어 함수를 다른 함수의 전달인자(Argument)로 사용하고, 함수에서 함수를 리턴하거나 변수의 값으로 함수를 할당할 수 있습니다.  [First-class Function - 용어 사전 | MDN](https://developer.mozilla.org/ko/docs/Glossary/First-class_Function)
+
+### First-Class function은…
+- 함수를 인자(argument)로 전달
+- 함수를 리턴(return) 값으로 전달
+- 함수를 변수에 전달
+
+### 익명 함수
+- 이름이 없는 함수
+- 몇 번 사용 안 할 때 주로 씀
+```
+def func(a, b):
+    return a + b
+
+# 람다는 반드시 리턴이라서 return 생략
+f = lambda a, b: a + b
+
+li=[3, 2, 5, 6, 1, 8]
+li2=li.copy()
+
+li2.sort(reverse=True)
+
+li2.sort(key=lambda x: x%2==2, reverse=True)
+```
+
+
+### list comprehension
+```
+li2=[i*2 for i in range(1, 101)]
+```
+
+### map, filter, reduce
+- lazy evaluation(게으른 연산)
+- map : for와의 차이점은 연산의 실행 시점을 주도적으로 정할 수 있다는 점. 
+```
+li=[1, 2, 3, 4]
+m=map(lambda x: x**2, li)
+next(m)
+```
+
+- filter: 기준을 정하여 원하는 값만 걸러냄
+```
+li=[5, -4, 3, -2, 6]
+f=filter(lambda x: x > 0, li)
+next(f)
+```
+
+**filter와 map 동시 사용**
+```
+li=[4, -2, 5, 3]
+list(map(lambda x: x**2 ,filter(lambda x: x > 0, li)))
+```
+
+- reduce: 원하는 값이 나올 때까지 리스트를 줄여줌
+```
+# 최대값 구하기
+li=[5, 2, 7, 13, 2, 6, 10]
+reduce(lambda a, b: a if a > b else b, li)
+```
+
+
+### 삼항 연산자(python)
+```
+a=10
+# 참일 때 값 if 조건문 else 거짓일 때 값
+string='big' if a > 7 else 'small'
+```
+
+
+### 문제
+```
+li=['a', 'b', 'c', 'd', 'a', 'a', 'a', 'b', 'c']
+
+#result
+#dic={'a' : 4, 'b' : 2, 'c' : 2, 'd' : 1}
+
+#use
+#dic.get()
+#dic.update() or dic
+
+reduce(lambda dic, ch: dic.update({ch : dic.get(ch, 0)+1}) or dic, li, {})
+```
+- reduce는 내장함수가 아니라서 `from functools import reduce`  추가해야 함
+
+
+### closure
+- 함수 내부에 상태 정보를 저장해두고, 함수 결과가 이 내부의 상태 정보에 따라 출력 결과가 달라짐.
+- 일반적인 함수(function)은 하나의 input에 대해 하나의 output만을 가짐. 하지만 method, closure부터는 이 법칙이 깨짐.
+- (과거에)OOP를 쓸 수 없을 때 울며 겨자 먹기로 썼다.
+
+**지역변수(local variable)가 필요한 이유**
+- 함수가 실행 도중에 결과 데이터를 저장하기 위해서
+- 상태정보: 특정한 데이터의 현재 상태
+
+**스택프레임 존재의 이유**
+- 어떤 함수가 실행될 때 필요한 상태정보를 저장하기 위해
+-> 상태정보는 지역변수가 지정
+
+**계좌 클로저 함수**
+- 상태값에 따라 결과값이 달라짐?
+```
+def account(cus_name, balance):
+    def inner(money):
+        nonlocal balance
+        balance+=money
+        return cus_name, balance
+    return inner
+
+my_acnt = account('greg', 5000)
+your_acnt = account('john', 300)
+
+my_acnt(500)
+#('greg', 5500)
+your_acnt(500)
+#('john', 800)
+```
+
+
+### 선형 탐색(Linear Search)
+```
+li=[5, 4, 3, 1, 2, 10, 25]
+target = 3
+def linear_search(li, target):
+    for idx in range(len(li)):
+        if li[idx] == target:
+            return idx
+    return None
+linear_search(li, target)
+```
+
+### 알고리즘 성능 평가
+- 절대 시간  X 
+- 상대 시간으로 측정: 연산 횟수, 최악의 경우
+- 선형탐색의 소요 시간은 n에 비례
+
+### 이진 탐색(Binary Search)
+- 데이터가 정렬되어 있어 함(필수)
+
+```
+def binary_search(li, target):
+    """
+    binary_search(li, target) -> idx
+    타겟을 찾았다면 인덱스 반환
+    찾기 못 하면 None
+    """
+    pass
+```
+
+
+
+# 컴공 5일차(0423)
+0. Binary search, big O
+1. Compiler vs interpreter
+2. Process / thread -> multi thread -> race condition -> mural exclubion
+3. 절차지향
+4. OOP
+5. Network
+6. 알고리즘/자료구조
+
+### Binary Search
+- 데이터가 정렬되어 있어야 함(필수)
+```
+def binary_search(li, target):
+    start=0
+    end=len(li)-1
+    while start <= end:
+        mid=(start+end)//2
+        if target == li[mid]:
+            return mid
+        elif target < li[mid]:
+            end=mid-1
+        elif target > li[mid]:
+            start=mid+1
+    return None
+
+li=[1, 3, 5, 7, 9, 15, 17]
+target = 7
+binary_search(li, target)
+```
+
+- linear search : T(n) = n
+- binary search : T(n) = log2**n
+
+- ccpcon 2016 - Nicholas ormrod(youtube)
+
+### 속도가 빠른 순서
+1. O(1) : 상수시간 
+
+
+
+###  OS
+1. Job scheduling 
+	- scheduler -> context switching
+	- process status(프로세스 상태) -> thread -> multithreading
+		- [Process state - Wikipedia](https://en.wikipedia.org/wiki/Process_state)
+		- [운영 체제 - 위키백과, 우리 모두의 백과사전](https://ko.wikipedia.org/wiki/%EC%9A%B4%EC%98%81_%EC%B2%B4%EC%A0%9C)
+		- [Scheduling Priorities - Windows applications | Microsoft Docs](https://docs.microsoft.com/en-us/windows/desktop/procthread/scheduling-priorities)
+		- [Scheduler -3- (Preemption & Context Switch) – 문c 블로그](http://jake.dothome.co.kr/preemption/)
+		- 선점형(새치기, pre-emptive) 스케쥴링 / 비선점형(non-preemptive) 스케쥴링
+		- pre-emptive -> multitasking
+			1. Priority algorithm
+			2. Round-Robin algorithm -> 정해진 시간 동안 실행
+				- time slice / quantum
+
+2. Concurrency programming(동시성 프로그래밍)
+	- 논리적인 용어로 동시에 실행되는 것처럼 보이는 것입니다. 싱글 코어(멀티 코어에서도 가능)에서 멀티스레드를 동작시키기 위한 방식으로 멀티 태스킹을 위해 여러 개의 스레드가 번갈아 가면서 실행되는 방식입니다. 동시성을 이용한 싱글 코어의 멀티 태스킹은 각 스레드들이 병렬적으로 실행되는 것처럼 보이지만 사실은 서로 번갈아 가면서 실행되고 있는 방식입니다. (출처: [1) 동시성 프로그래밍과 비동기 프로그래밍 > 부스트코스 iOS 프로그래밍 : edwith](https://www.edwith.org/boostcourse-ios/lecture/16866/))
+	- 과거엔 주로 multithreading
+	- race-condition / dead-lock
+	- ::Asynchronous I/O -> IO Bound -> javascript 핵심개념 꼭 공부할 것!::
+		- 프로그램의 주 실행 흐름을 멈추어서 기다리는 부분 없이 바로 다음 작업을 실행할 수 있게 하는 방식입니다. 즉, 코드의 실행 결과 처리를 별도의 공간에 맡겨둔 뒤 결과를 기다리지 않고 바로 다음 코드를 실행하는 병렬처리 방식입니다. 비동기 프로그래밍은 언어 및 프레임워크에서 지원하는 여러 방법으로 구현할 수 있습니다.(출처: [1) 동시성 프로그래밍과 비동기 프로그래밍 > 부스트코스 iOS 프로그래밍 : edwith](https://www.edwith.org/boostcourse-ios/lecture/16866/))
+
+### program
+- **하드디스크**에 저장되어 있는 하나의 이미지(code, data)
+
+### process
+- **메인 메모리**에 올라와서 실행을 시작한 프로그램
+- 실행된 프로그램마다 P(process)ID 발급
+- 프로세서는 하드웨어적인 측면에서 컴퓨터 내에서 프로그램을 수행하는 하드웨어 유닛입니다. 대표적으로 중앙처리장치(Central Processing Unit - CPU)가 이에 속합니다. 한 컴퓨터가 여러 개의 프로세서를 갖는다면 멀티 프로세서라고 말합니다. 듀얼 프로세서라고 한다면 한 컴퓨터에 두 개의 프로세서가 운용된다고 할 수 있습니다. (출처:  [https://www.edwith.org/boostcourse-ios/lecture/16866/](https://www.edwith.org/boostcourse-ios/lecture/16866/) )
+
+### 프로그램과 프로세스
+- 프로그램은 일반적으로 보조기억 장치에 저장된 실행코드 즉, 생명이 없는 상태를 말합니다. 프로세스는 프로그램을 구동하여 프로그램 자체와 프로그램의 상태가 메모리상에서 실행되는 작업 단위를 말합니다. 동시에 여러 개의 프로세스를 운용하는 시분할 방식을 멀티태스킹이라고 합니다. 이러한 프로세스 관리는 운영체제에서 담당합니다. (출처: [1) 동시성 프로그래밍과 비동기 프로그래밍 > 부스트코스 iOS 프로그래밍 : edwith](https://www.edwith.org/boostcourse-ios/lecture/16866/))
+
+### Context Switching
+- instruction 
+- PCB(process controls block)
+- context switching은 느려서 자주 하면 안 좋지만, 안 할 수는 없음
+- [문맥 교환 - 위키백과, 우리 모두의 백과사전](https://ko.wikipedia.org/wiki/%EB%AC%B8%EB%A7%A5_%EA%B5%90%ED%99%98)
+- [Process (computing) - Wikipedia](https://en.wikipedia.org/wiki/Process_(computing))
+
+### Process vs Thread
+- Process
+	- 실행흐름
+
+- Thread
+	- 스레드는 하나의 프로세스 내에서 실행되는 작업흐름의 단위를 말합니다. 보통 한 프로세스는 하나의 스레드를 가지고 있지만, 프로세스 환경에 따라 둘 이상의 스레드를 동시에 실행할 수 있습니다. 이러한 방식을 멀티스레딩이라고 합니다. 그리고 프로그램 실행이 시작될 때부터 동작하는 스레드를 메인 스레드라 하고 그 외에 나중에 생성된 스레드를 서브 스레드 또는 세컨더리 스레드라고 합니다. (출처: [1) 동시성 프로그래밍과 비동기 프로그래밍 > 부스트코스 iOS 프로그래밍 : edwith](https://www.edwith.org/boostcourse-ios/lecture/16866/))
+	- 인스트럭션의 나열
+	- process에 포함됨                    
+	- GIL(global interpreter lock)
+	- multi-thread exam
+```
+*import* threading
+
+n=1000
+offset=n//4
+
+def thread_main(*li*, *i*):
+    *for* idx in range(offset*i, offset*(1+1)):
+        li[idx]*=2
+        
+li=[i *for* i in range(1, 1001)]
+threads=[]
+
+*#스레드를 생성*
+*for* i in range(4):
+    th=threading.Thread(
+        *target*=thread_main, *args*=(li, i))
+    threads.append(th)
+
+*#멀티스레딩*
+*for* th in threads:
+    th.start()
+
+*#메인 스레드에서 나머지 스레드들이 모든 실행을 끝날 때까지 기다림.*
+*for* th in threads:
+    th.join()
+
+print(li)
+```
+	
+- 동시성(Concurrency) 프로그래밍/ 병렬(Parallelism) 프로그래밍
+	- 둘은 다른 개념
+	- 동시성 프로그래밍은 하드웨어적으로도 나누어져야 함
+  
+- 공유자원(shared resource)에 같이 접근하면 멀티스레딩의 효율(race condition)이 좋지 않음
+- 공유자원 대표적인 건 ‘전역 변수’ 
+- race-condition exam
+```
+*import* threading
+
+*# 공유 자원*
+*# 모든 스레드에서 접근이 가능한 자원*
+*# 전역 변수*
+g_num=0
+*# Lock 객체*
+lock=threading.Lock()
+
+def thread_main():
+    global g_num
+
+    *# critical section*
+    *# 임계 영역*
+    *# 어떤 스레드에서 공유 자원에 접근한 후*
+    *# 수정, 변경 하려는 코드*
+    lock.acquire()
+    *for* _ in range(1000000):
+        g_num+=1
+    lock.release()
+
+threads=[]
+
+*for* _ in range(50):
+            th=threading.Thread(*target*=thread_main)
+            threads.append(th)
+
+*for* th in threads:
+    th.start()
+
+*for* th in threads:
+    th.join()
+
+print(g_num)
+
+```                                                                                                                                                                                                                                                                                                                                                                                                           
+
+
+### 재귀함수(Recursion)
+- 함수 호출 도중에 자기 자신을 다시 호출하는 것
+- base case(기저 조건, 종료 조건, 탈출 조건)
+```
+def func(n):
+    # bace case
+    if n <= 0:
+        return
+    func(n-1)
+
+func(5)
+```
+
+### 재귀함수를 만드는 방법
+- 패턴을 찾는 -> 점화식을 만든다!
+- 기저 조건을 만든다
+
+**예제**
+	- factorial(계승) : 3! = 3 * 2 * 1 = 3 * 2!
+	- 점화식: fac(n) = fac(n-1) * n
+	- 기저조건: n==1 or n==0 return 1
+```
+def factorial(n):
+    if n==0 or n==1:
+        return 1
+    
+    return factorial(n-1) * n
+
+for i in range(1, 6):
+    print(factorial(i))
+```
+
+
+### 피보나치 수열(Fibonacci Series)
+
+**예제**
+- 점화식: fibo(n-2)+fibo(n-1)
+- 기저조건: if n==1 then 0
+		if n==2 then 1
+```
+def fibonacci(n):
+    if n==1:
+        return 0
+    elif n==2:
+        return 1
+    return fibonacci(n-2) + fibonacci(n-1)
+
+for i in range(1, 11):
+    print(fibonacci(i), end=' ')
+```
+
+#### 참고자료
+- edwith
+- wikipedia
