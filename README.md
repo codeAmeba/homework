@@ -1,8 +1,9 @@
-# HTML/CSS 1~8일차 주요 내용
+
 ## 블로그에 정리중
 - https://codeameba.github.io/
 
-## 1일차(0401)
+# HTML/CSS
+## HTML/CSS 1일차(0401)
 - XML
 - HTML 4.01
 - WHATWG
@@ -21,7 +22,7 @@
 	- ::before, ::after, :hover
 
 
-## 2일차(0402)
+## HTML/CSS 2일차(0402)
 - CSS 기초
 	- 상속의 이해
 	- 겹침의 개념
@@ -45,7 +46,7 @@
 	- -webkit, -ms, -o, -moz
 
 
-## 3일차(0404)
+## HTML/CSS 3일차(0404)
 - nav
 	- 한 페이지에 2~3개 정도가 적당
 	- 메인메뉴임을 알 수 있도록 <h1>으로 제목 넣어줄 것(section, article 동일)
@@ -59,7 +60,7 @@
 - animation - @keyframe
 
 
-## 4일차(0405)
+## HTML/CSS 4일차(0405)
 - form
 - fields
 - legend
@@ -73,14 +74,14 @@
 ```
 
 
-## 5일차(0408)
+## HTML/CSS 5일차(0408)
 - dl, dt, dd
 - display: flex
 - 크로스브라우징의 중요성
 - HTML5 Shiv - [WEBDIR :: HTML5 Shiv - HTML5 요소 크로스브라우징](https://webdir.tistory.com/81)
 
 
-## 6일차(0409)
+## HTML/CSS 6일차(0409)
 - <time>
 	- 날짜 정의
 	- datetime 속성 - 필수 속성, 컴퓨터가 날짜를 확인
@@ -94,7 +95,7 @@
 	- [https://keycode.info/](https://keycode.info/) 
 	
 
-## 7일차(0411)
+## HTML/CSS 7일차(0411)
 - article
 - figure
 - img alt
@@ -102,7 +103,7 @@
 - transition
 
 
-## 8일차(0412)
+## HTML/CSS 8일차(0412)
 - ol
 - q
 - footer - article 내부에도 사용 가능
@@ -114,7 +115,7 @@
 	- disc, circle, square, decimal, decimal-leading-zero, lower-roman, upper-roman, lower-greek, lower-latin, upper-latin, armenian, georgian, lower-alpha, upper-alpha, or none.
 
 
-## 9일차(0415)
+## HTML/CSS 9일차(0415)
 - `<a href="mailto:code.ameba@gmail.com">code.ameba@gmail.com</a>`
 > 클릭 시 메일 작성 창 열림
 - `<a href=“tel:01026840242”>Tel</a> 
@@ -155,7 +156,7 @@ img {
 - padding 백분율은 가로 사이즈 기준
 
 
-## 10일차(0416)
+## HTML/CSS 10일차(0416)
 - picture, srcset 등으로 기기별 적절한 이미지 사이즈 적용 가능
 - 반응형 배경이미지
 
