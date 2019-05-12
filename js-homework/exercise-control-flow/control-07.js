@@ -1,8 +1,9 @@
 // for 문을 사용하여 0부터 10미만의 정수의 합을 출력
+// 변수명 수정 완료
 
-let i = 0;
+let sum = 0;
 
-for (let j = 0; j < 10; j++) {
-  i += j;
+for (let i = 0; i < 10; i++) {
+  sum += i;
 }
-console.log(i);
+console.log(sum);
