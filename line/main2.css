@@ -94,6 +94,10 @@ li {
 .sub-menu1 {
     height: 180px;
 }
+.main-menu-item1, .main-menu-item2, .main-menu-item3, .main-menu-item4 {
+    background: green;
+    padding-bottom: 40px;
+}
 .main-menu-item1:hover .sub-menu1 {
     top: 50px;
     opacity: .90;
