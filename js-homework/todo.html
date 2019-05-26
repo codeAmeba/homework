@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo</title>
+</head>
+<body>
+  <input type="text" class="input-todo" placeholder="Enter Todo!">
+  <button class="add">Add</button>
+  <ul class="todos"></ul>
+  <script>
+    // HTML의 클래스를 변수명에 할당
+    const $inputTodo = document.querySelector('.input-todo');
+    const $add = document.querySelector('.add');
+    const $todos = document.querySelector('.todos');
+
+
+    // newTodo를 파라미터로 받는 함수 addTodo 선언
+    function addTodo(newTodo) {
+      // 변수명 $todos에 <li>를 추가 및 할당하여 HTML에 삽입
+      $todos.innerHTML += `<li class="todo"><input type="checkbox">${newTodo}<button class="remove">x</button></li>`;
+    }
+
+    // removeTodo 함수 선언
+    function removeTodo(childNode) {
+      // 변수 $todos에 할당된 todos 클래스의 자식 노드를 파라미터로 받아서 삭제
+      $todos.removeChild(childNode);
+    }
+
+    // 변수명 $add에 할당된 클래스명 add 갖는 버튼 클릭 시
+    // input에 작성된 내용이 문자열로 바뀌어 함수 addTodo의 파라미터로 전달 됨
+    $add.onclick = function () {
+      addTodo($inputTodo.value);
+      $inputTodo.value = '';
+    };
+
+    // let remove = document.querySelector('.todos').lastElementChild;
+
+
+    // 함수 addTodo로 출력된 리스트의 x버튼 클릭 시 삭제 이벤트 동작
+    $todos.addEventListener('click', function (e) {
+      // 이벤트의 타겟의 부모 노드를 target 변수에 할당
+      const target = e.target.parentNode;
+      // target이 보유한 classList에서 todo 클래스를 포함 요소를 찾아서 삭제
+      if (target.classList.contains('remove')) removeTodo(target);
+    });
+
+    // contains('remove')로 하면 체크, 가로줄은 동작하지만, 삭제가 안 됨.
+    // contains('todo')로 하면 삭제는 되지만, 체크박스를 눌러도 삭제가 됨. 
+
+
+    // 함수 addTodo로 출력된 리스트의 상태가 변할 때 동작
+    $todos.addEventListener('change', function (e) {
+      // 이벤트 타겟의 부모 노드의 첫 번째 자식 요소를 target 변수에 할당
+      const target = e.target.parentNode.firstChild;
+      // 체크 박스가 체크 됐을 때, 타겟의 부모 노드에 가로줄 생성,
+      // 체크 상태가 아니면, 가로줄 제거
+      if (target.checked) {
+        target.parentNode.style.textDecoration = 'line-through';
+      } else {
+        target.parentNode.style.textDecoration = 'none';
+      }
+    });
+
+  </script>
+</body>
+</html>
