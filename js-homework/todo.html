@@ -1,67 +1,334 @@
 <!DOCTYPE html>
-<html lang="ko-KR">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Todo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todos 2.0</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700|Noto+Sans+KR');
+    @import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+      /* font-size: 16px; */
+      font-size: 0.9em;
+      color: #58666e;
+      background-color: #f0f3f4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .container {
+      max-width: 750px;
+      min-width: 450px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+    
+    .title {
+      /* margin: 10px 0; */
+      font-size: 4.5em;
+      font-weight: 100;
+      text-align: center;
+      color: #23b7e5;
+    }
+    
+    .ver {
+      font-weight: 100;
+      text-align: center;
+      color: #23b7e5;
+      margin-bottom: 30px;
+    }
+    
+    /* .input-todo  */
+    .input-todo {
+      display: block;
+      width: 100%;
+      height: 45px;
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.3333333;
+      color: #555;
+      border: 1px solid #ccc;
+      border-color: #e7ecee;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    
+    .input-todo:focus {
+      border-color: #23b7e5;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    }
+    
+    .input-todo::-webkit-input-placeholder {
+      color: #999;
+    }
+    
+    /* .nav */
+    .nav {
+      display: flex;
+      margin: 15px;
+      list-style: none;
+    }
+    
+    .nav > li {
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .nav > li.active {
+      color: #fff;
+      background-color: #23b7e5;
+    }
+    
+    .todos {
+      margin-top: 20px;
+    }
+    
+    /* .todo-item */
+    .todo-item {
+      position: relative;
+      /* display: block; */
+      height: 50px;
+      padding: 10px 15px;
+      margin-bottom: -1px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-color: #e7ecee;
+      list-style: none;
+    }
+    
+    .todo-item:first-child {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    .todo-item:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    
+    /*
+      .custom-checkbox
+      custom-checkbox 바로 뒤에 위치한 label의 before와 after를 사용해
+      custom-checkbox의 외부 박스와 내부 박스를 생성한다.
+    
+      <input class="custom-checkbox" type="checkbox" id="myId">
+      <label for="myId">Content</label>
+    */
+    
+    .custom-checkbox {
+      display: none;
+    }
+    
+    .custom-checkbox + label {
+      position: absolute; /* 부모 위치를 기준으로 */
+      top: 50%;
+      left: 15px;
+      transform: translate3d(0, -50%, 0);
+      display: inline-block;
+      width: 90%;
+      line-height: 2em;
+      padding-left: 35px;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .custom-checkbox + label:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate3d(0, -50%, 0);
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border: 1px solid #cfdadd;
+    }
+    
+    .custom-checkbox:checked + label:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 6px;
+      transform: translate3d(0, -50%, 0);
+      width: 10px;
+      height: 10px;
+      background-color: #23b7e5;
+    }
+    
+    /* .remove-todo button */
+    .remove-todo {
+      display: none;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      cursor: pointer;
+      transform: translate3d(0, -50%, 0);
+    }
+    
+    /* todo-item이 호버 상태이면 삭제 버튼을 활성화 */
+    .todo-item:hover > .remove-todo {
+      display: block;
+    }
+    
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    
+    .complete-all, .clear-completed {
+      position: relative;
+      flex-basis: 50%;
+    }
+    
+    .clear-completed {
+      text-align: right;
+      padding-right: 15px;
+    }
+    
+    .btn {
+      padding: 1px 5px;
+      font-size: .8em;
+      line-height: 1.5;
+      border-radius: 3px;
+      outline: none;
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      color: #333;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+    </style>
 </head>
 <body>
-  <input type="text" class="input-todo" placeholder="Enter Todo!">
-  <button class="add">Add</button>
-  <ul class="todos"></ul>
+  <div class="container">
+    <h1 class="title">Todos</h1>
+    <div class="ver">2.0</div>
+
+    <input class="input-todo" placeholder="What needs to be done?" autofocus>
+    <ul class="nav">
+      <li id="all" class="active">All</li>
+      <li id="active">Active</li>
+      <li id="completed">Completed</li>
+    </ul>
+
+    <ul class="todos">
+      <!-- <li id="myId" class="todo-item">
+        <input class="custom-checkbox" type="checkbox" id="ck-myId">
+        <label for="ck-myId">HTML</label>
+        <i class="remove-todo far fa-times-circle"></i>
+      </li> -->
+    </ul>
+    <div class="footer">
+      <div class="complete-all">
+        <input class="custom-checkbox" type="checkbox" id="ck-complete-all">
+        <label for="ck-complete-all">Mark all as complete</label>
+      </div>
+      <div class="clear-completed">
+        <button class="btn">Clear completed (<span class="completed-todos">0</span>)</button>
+        <strong class="active-todos">0</strong> items left
+      </div>
+    </div>
+  </div>
   <script>
-    // HTML의 클래스를 변수명에 할당
-    const $inputTodo = document.querySelector('.input-todo');
-    const $add = document.querySelector('.add');
+    // 1. 서버에서 하기의 데이터를 받았다고 가정함
+    let todos = [
+      { id: 1, content: 'Drink Kirin', completed: true },
+      { id: 2, content: 'Drink Asahi', completed: false },
+      { id: 3, content: 'Drink Stella', completed: true }
+    ];
+
+    // 2. DOM 조작을 위한 주요 클래스를 변수에 할당
     const $todos = document.querySelector('.todos');
+    const $inputTodo = document.querySelector('.input-todo');
 
+    // 5. 변경 사항이 생길 때 새롭게 렌더링을 하기 위한 함수 생성
+    function render() {
+      // 4. HTML에 출력하기 위한 빈 문자열 생성
+      let html = '';
+    
+      // 3. 서버에서 받은 데이터를 forEach를 통해 HTML 태그에 삽입
+      todos.forEach(({ id, content, completed }) => {
+        html += `<li id="${id}" class="todo-item"><input class="custom-checkbox" type="checkbox" id="ck-myId" ${completed ? 'checked' : ''}><label for="ck-myId">${content}</label><i class="remove-todo far fa-times-circle"></i></li>`;
+      });
+      $todos.innerHTML = html;
+    }
+    render();
 
-    // newTodo를 파라미터로 받는 함수 addTodo 선언
-    function addTodo(newTodo) {
-      // 변수명 $todos에 <li>를 추가 및 할당하여 HTML에 삽입
-      $todos.innerHTML += `<li class="todo"><input type="checkbox">${newTodo}<button class="remove">x</button></li>`;
+    // 신규 생성 todo에 id 자동으로 부여하는 함수 생성
+    function generateId() {
+      // 현재 todos의 id 중 가장 높은 숫자를 확인 후 +1하여 id번호 부여
+      // 만약 todos의 length가 0일 경우 id: 1 부여
+      return todos.length ? Math.max(...todos.map(({ id }) => id)) + 1 : 1;
+      render();
     }
 
-    // removeTodo 함수 선언
-    function removeTodo(childNode) {
-      // 변수 $todos에 할당된 todos 클래스의 자식 노드를 파라미터로 받아서 삭제
-      $todos.removeChild(childNode);
+    // 14. 체크박스 상태 변화에 활용할 함수 생성
+    function completedTodo(id) {
+      // 15. todos에 map() 메서드 사용하여 todo의 id와 클릭한 요소의 id가 같다면 completed의 상태를 변경
+      // 같지 않다면 원본의 todo 출력
+      todos = todos.map(todo => (todo.id === +id ? { ...todo, completed: !todo.completed } : todo));
+      console.log(todos); // (문제!!!) 최상단 todo만 상태변화가 적용됨, 신규생성 개체 포함.
+      render();
     }
 
-    // 변수명 $add에 할당된 클래스명 add 갖는 버튼 클릭 시
-    // input에 작성된 내용이 문자열로 바뀌어 함수 addTodo의 파라미터로 전달 됨
-    $add.onclick = function () {
+    // 9. 삭제 버튼 동작을 위한 함수 생성
+    function removeTodo(id) {
+      // 10. todos에 filter() 메서드 사용하여 todo의 id와 클릭된 id가 같을 경우 필터링(제거)
+      // 따라서 같지 않은 경우의 id만 남김. 이때, id는 Number로 형변환 해야 함.
+      todos = todos.filter(todo => todo.id !== +id);
+      render();
+    }
+
+    // 18. input에 입력한 텍스트를 추가하는 함수 생성
+    function addTodo(content) {
+      // 19. 배열객체로 생성하여 spread operator를 사용하여 todo에 추가
+      todos = [{ id: generateId(), content, completed: false }, ...todos];
+      render();
+    }
+
+    // 6. 삭제 버튼 클릭 시 해당 <li> 삭제
+    $todos.addEventListener('click', e => {
+      // 7. e.target에 찍히는 요소 중 remove-todo 클래스를 가진 요소가 아니면 통과 
+      if (!e.target.classList.contains('remove-todo')) return;
+      // 8. remove-todo 클래스를 가진 요소의 부모 노드의 id 확인 후 삭제
+      removeTodo(e.target.parentNode.id);
+    });
+
+    // 11. 체크박스 클릭 시 상태 변화
+    $todos.addEventListener('change', e => {
+      // 12. e.target의 요소 중 custom-checkbox 클래스를 가진 요소가 아니면 통과
+      if (!e.target.classList.contains('custom-checkbox')) return;
+      // 13. custom-checkbox 클래스를 가진 요소의 부모 노드의 id 확인 후 completed의 상태 변화(true, false)
+      completedTodo(e.target.parentNode.id);
+    });
+
+    // 14. input에 엔터키(13번)로 텍스트 입력 시 적용
+    $inputTodo.addEventListener('keyup', e => {
+      // 15. trim() 메서드 사용하여 텍스트의 공백 제거 또는, 입력 키값이 13번이면 통과
+      if ($inputTodo.value.trim() === '' || e.keyCode !== 13) return;
+      // 16. 공백이 없거나 키값이 14번이라면 todo에 입력값 추가
       addTodo($inputTodo.value);
+      // 17. 문자열로 형변환
       $inputTodo.value = '';
-    };
-
-    // let remove = document.querySelector('.todos').lastElementChild;
-
-
-    // 함수 addTodo로 출력된 리스트의 x버튼 클릭 시 삭제 이벤트 동작
-    $todos.addEventListener('click', function (e) {
-      // 이벤트의 타겟의 부모 노드를 target 변수에 할당
-      const target = e.target.parentNode;
-      // target이 보유한 classList에서 todo 클래스를 포함 요소를 찾아서 삭제
-      if (target.classList.contains('remove')) removeTodo(target);
     });
 
-    // contains('remove')로 하면 체크, 가로줄은 동작하지만, 삭제가 안 됨.
-    // contains('todo')로 하면 삭제는 되지만, 체크박스를 눌러도 삭제가 됨. 
-
-
-    // 함수 addTodo로 출력된 리스트의 상태가 변할 때 동작
-    $todos.addEventListener('change', function (e) {
-      // 이벤트 타겟의 부모 노드의 첫 번째 자식 요소를 target 변수에 할당
-      const target = e.target.parentNode.firstChild;
-      // 체크 박스가 체크 됐을 때, 타겟의 부모 노드에 가로줄 생성,
-      // 체크 상태가 아니면, 가로줄 제거
-      if (target.checked) {
-        target.parentNode.style.textDecoration = 'line-through';
-      } else {
-        target.parentNode.style.textDecoration = 'none';
-      }
-    });
-
+    render();
   </script>
 </body>
 </html>
